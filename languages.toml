@@ -21,6 +21,7 @@ bicep-langserver = { command = "bicep-langserver" }
 bitbake-language-server = { command = "bitbake-language-server" }
 buf = { command = "buf", args = ["lsp", "serve", "--timeout", "0"] }
 c3-lsp = { command = "c3-lsp" }
+cadence-language-server = { command = "flow", args = ["cadence", "language-server"], config = { configPath = "./flow.json", numberOfAccounts = "1" } }
 cairo-language-server = { command = "cairo-language-server", args = [] }
 circom-lsp = { command = "circom-lsp" }
 cl-lsp = { command = "cl-lsp" }
@@ -4974,6 +4975,21 @@ auto-format = true
 [[grammar]]
 name = "caddyfile"
 source = { git = "https://github.com/caddyserver/tree-sitter-caddyfile", rev = "b04bdb4ec53e40c44afbf001e15540f60a296aef" }
+
+[[language]]
+name = "cadence"
+scope = "source.cadence"
+injection-regex = "cadence"
+file-types = ["cdc"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["cadence-language-server"]
+roots = ["flow.json"]
+
+[[grammar]]
+name = "cadence"
+source = { git = "https://github.com/bluesign/tree-sitter-cadence", rev = "adaf13d3c20c95ed408fb2d819b26e5c4d7fb228" }
 
 [[language]]
 name = "properties"
